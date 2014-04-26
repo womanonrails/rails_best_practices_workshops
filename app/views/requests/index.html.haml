@@ -4,6 +4,8 @@
     New Request
   %h1 Listing requests
 
+= paginate requests
+
 .table-responsive
   %table.table.table-striped.table-bordered.table-hover
     %thead
@@ -26,3 +28,4 @@
           %td= link_to 'Add offer', new_request_offer_path(request)
           %td= link_to 'Edit', edit_request_path(request)
           %td= link_to 'Destroy', request, :data => { confirm: 'Are you sure?' }, :method => :delete
+

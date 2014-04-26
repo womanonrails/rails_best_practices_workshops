@@ -3,7 +3,7 @@ class RequestsController < ApplicationController
 
   expose(:request_object, model: :request, attributes: :request_params)
   expose(:offers) { request_object.offers }
-  expose(:requests)
+  expose(:requests) { Request.page params[:page] }
 
   # POST /requests
   def create
