@@ -23,7 +23,9 @@ class OffersController < ApplicationController
   end
 
   private
-    def offer_params
-      params.require(:offer).permit(:user_id, :message)
-    end
+
+  def offer_params
+    params[:request_id] && params[:offer].merge!(request_id: params[:request_id])
+    params.require(:offer).permit(:user_id, :message, :request_id)
+  end
 end

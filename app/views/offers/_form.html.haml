@@ -1,19 +1,6 @@
-= form_for offer, url: path, :html => { :class => "form-horizontal" } do |f|
-  -if offer.errors.any?
-    .alert.alert-danger.alert-dismissable
-      %button.close{"aria-hidden" => "true", "data-dismiss" => "alert", :type => "button"} &times;
-      %h4= "#{pluralize(offer.errors.count, "error")} prohibited this offer from being saved:"
-
-      %ul
-        - offer.errors.full_messages.each do |msg|
-          %li= msg
-
+= simple_form_for offer, url: path, html: { class: 'form-horizontal' } do |f|
   = f.hidden_field :user_id, value: current_user.id
-
   .form-group
-    = f.label :message, :class => 'col-sm-2 control-label'
-    .col-sm-10
-      = f.text_field :message, :class => 'form-control'
+    = f.input :message, input_html: { class: 'form-control' }
   .form-group
-    .col-sm-offset-2.col-sm-10
-      = f.submit :class => 'btn btn-primary'
+    = f.submit class: 'btn btn-primary'

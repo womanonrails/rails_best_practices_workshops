@@ -17,6 +17,7 @@ gem 'haml-rails', '~> 0.5.3'
 gem 'devise'
 gem 'decent_exposure'
 gem 'kaminari'
+gem 'simple_form'
 
 group :development do
   gem 'guard-rails', '~> 0.5.0'
