@@ -1,57 +1,29 @@
 class RequestsController < ApplicationController
-  before_action :set_request, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
-  # GET /requests
-  def index
-    @requests = Request.all
-  end
-
-  # GET /requests/1
-  def show
-  end
-
-  # GET /requests/new
-  def new
-    @request = Request.new
-  end
-
-  # GET /requests/1/edit
-  def edit
-  end
+  expose(:request_object, model: :request, attributes: :request_params)
+  expose(:offers) { request_object.offers }
+  expose(:requests)
 
   # POST /requests
   def create
-    @request = Request.new(request_params)
-
-    if @request.save
-      redirect_to @request, notice: 'Request was successfully created.'
-    else
-      render :new
-    end
+    request_object.save
+    respond_with(request_object)
   end
 
   # PATCH/PUT /requests/1
   def update
-    if @request.update(request_params)
-      redirect_to @request, notice: 'Request was successfully updated.'
-    else
-      render :edit
-    end
+    request_object.save
+    respond_with(request_object)
   end
 
   # DELETE /requests/1
   def destroy
-    @request.destroy
-    redirect_to requests_url, notice: 'Request was successfully destroyed.'
+    request_object.destroy
+    respond_with(request_object)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_request
-      @request = Request.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
     def request_params
       params.require(:request).permit(:user_id, :title, :description)
     end

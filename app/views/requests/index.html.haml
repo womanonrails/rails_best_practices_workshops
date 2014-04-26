@@ -17,12 +17,12 @@
         %th
 
     %tbody
-      - @requests.each do |request|
+      - requests.each do |request|
         %tr
-          %td= request.title
+          %td= link_to request.title, request
           %td= request.description
-          %td= request.created_at
-          %td= 0
-          %td= link_to 'Show', request
+          %td= l request.created_at, format: :short
+          %td= request.offers.count
+          %td= link_to 'Add offer', new_request_offer_path(request)
           %td= link_to 'Edit', edit_request_path(request)
           %td= link_to 'Destroy', request, :data => { confirm: 'Are you sure?' }, :method => :delete

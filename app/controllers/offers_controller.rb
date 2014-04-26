@@ -1,57 +1,28 @@
 class OffersController < ApplicationController
-  before_action :set_offer, only: [:show, :edit, :update, :destroy]
+  respond_to :html
 
-  # GET /offers
-  def index
-    @offers = Offer.all
-  end
-
-  # GET /offers/1
-  def show
-  end
-
-  # GET /offers/new
-  def new
-    @offer = Offer.new
-  end
-
-  # GET /offers/1/edit
-  def edit
-  end
+  expose(:request_object) { Request.where(params[:request_id]).last }
+  expose(:offer, attributes: :offer_params)
 
   # POST /offers
   def create
-    @offer = Offer.new(offer_params)
-
-    if @offer.save
-      redirect_to @offer, notice: 'Offer was successfully created.'
-    else
-      render :new
-    end
+    offer.save
+    respond_with(request_object)
   end
 
   # PATCH/PUT /offers/1
   def update
-    if @offer.update(offer_params)
-      redirect_to @offer, notice: 'Offer was successfully updated.'
-    else
-      render :edit
-    end
+    offer.save
+    respond_with(offer.request)
   end
 
   # DELETE /offers/1
   def destroy
-    @offer.destroy
-    redirect_to offers_url, notice: 'Offer was successfully destroyed.'
+    offer.destroy
+    respond_with(offer.request)
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_offer
-      @offer = Offer.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
     def offer_params
       params.require(:offer).permit(:user_id, :message)
     end

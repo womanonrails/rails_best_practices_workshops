@@ -1,7 +1,7 @@
 .page-header
-  = link_to offers_path, :class => 'btn btn-default' do
+  = link_to requests_path, :class => 'btn btn-default' do
     %span.glyphicon.glyphicon-list-alt
     Back
   %h1 New offer
 
-= render 'form'
+= render 'form', offer: offer, path: request_offers_path(request_object)

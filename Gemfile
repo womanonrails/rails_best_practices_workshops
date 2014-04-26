@@ -15,6 +15,8 @@ gem 'bootstrap-generators', '~> 3.1.0'
 gem 'bootstrap-sass', '~> 3.1.0'
 gem 'haml-rails', '~> 0.5.3'
 gem 'devise'
+gem 'decent_exposure'
+gem 'kaminari'
 
 group :development do
   gem 'guard-rails', '~> 0.5.0'
@@ -23,6 +25,7 @@ group :development do
   gem 'rack-livereload', '~> 0.3.15'
   gem 'quiet_assets', '~> 1.0.2'
   gem 'better_errors', '~> 1.1.0'
+  gem 'binding_of_caller'
   gem 'rb-fsevent', '~> 0.9.4' if `uname` =~ /Darwin/
 end
 
