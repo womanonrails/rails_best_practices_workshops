@@ -1,9 +1,9 @@
 class RequestsController < ApplicationController
   respond_to :html
 
-  expose(:request_object, model: :request, attributes: :request_params)
+  expose_decorated(:request_object, model: :request, attributes: :request_params)
   expose(:offers) { request_object.offers }
-  expose(:requests) { Request.page params[:page] }
+  expose_decorated(:requests) { Request.page params[:page] }
 
   # POST /requests
   def create

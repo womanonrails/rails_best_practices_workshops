@@ -18,6 +18,8 @@ gem 'devise'
 gem 'decent_exposure'
 gem 'kaminari'
 gem 'simple_form'
+gem 'draper', '~> 1.3'
+gem 'decent_decoration'
 
 group :development do
   gem 'guard-rails', '~> 0.5.0'

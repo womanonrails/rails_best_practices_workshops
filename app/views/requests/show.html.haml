@@ -14,6 +14,8 @@
   %dd= request_object.description
   %dt User:
   %dd= request_object.user.email
+  %dt Created at
+  %dd= request_object.created_at
 
 .page-header
   = link_to new_request_offer_path(request_object), :class => 'btn btn-primary' do
