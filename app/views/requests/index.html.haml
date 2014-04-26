@@ -1,0 +1,28 @@
+.page-header
+  = link_to new_request_path, :class => 'btn btn-primary' do
+    %span.glyphicon.glyphicon-plus
+    New Request
+  %h1 Listing requests
+
+.table-responsive
+  %table.table.table-striped.table-bordered.table-hover
+    %thead
+      %tr
+        %th Title
+        %th Description
+        %th Created at
+        %th Offer number
+        %th
+        %th
+        %th
+
+    %tbody
+      - @requests.each do |request|
+        %tr
+          %td= request.title
+          %td= request.description
+          %td= request.created_at
+          %td= 0
+          %td= link_to 'Show', request
+          %td= link_to 'Edit', edit_request_path(request)
+          %td= link_to 'Destroy', request, :data => { confirm: 'Are you sure?' }, :method => :delete

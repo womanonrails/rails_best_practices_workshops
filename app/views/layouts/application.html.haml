@@ -23,15 +23,21 @@
             %span.icon-bar
             %span.icon-bar
             %span.icon-bar
-          = link_to "Project name", "#", :class => "navbar-brand"
+          = link_to 'Requester', root_path, class: 'navbar-brand'
         .collapse.navbar-collapse
           %ul.nav.navbar-nav
             %li.active
-              %a{:href => "#"} Home
+              = link_to 'Requests', requests_path
             %li
-              %a{:href => "#about"} About
-            %li
-              %a{:href => "#contact"} Contact
+              = link_to 'Offers', offers_path
+            - if user_signed_in?
+              %li
+                = link_to 'Sign out', destroy_user_session_path, method: :delete
+            - else
+              %li
+                = link_to 'Sign in', new_user_session_path
+              %li
+                = link_to 'Sign up',  new_user_registration_path
     .container
       - flash.each do |name, msg|
         = content_tag :div, :class => "alert alert-#{name == :error ? "danger" : "success" } alert-dismissable" do
